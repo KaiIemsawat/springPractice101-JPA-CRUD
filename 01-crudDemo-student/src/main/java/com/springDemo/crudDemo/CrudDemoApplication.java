@@ -17,25 +17,19 @@ public class CrudDemoApplication {
 		SpringApplication.run(CrudDemoApplication.class, args);
 	}
 
-	@Bean
+	@Bean										/*DAO stands for Data Access Object*/
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-//			createStudent(studentDAO);
-
-//			createMultipleStudents(studentDAO);
-
-			readStudent(studentDAO);
-
-//			queryForStudents(studentDAO);
-
-//			queryForStudentsByFirstName(studentDAO);
-
-//			updateStudent(studentDAO);
-
-//			deleteStudent(studentDAO);
+//			createStudent(studentDAO);  				/* CREATE A STUDENT */
+//			createMultipleStudents(studentDAO);  		/* CREATE MULTIPLE STUDENTS */
+//			readStudent(studentDAO);  					/* GET A STUDENT BY ID */
+//			queryForStudents(studentDAO);  				/* FIND ALL STUDENT */
+//			queryForStudentsByFirstName(studentDAO);  	/* FIND A STUDENT BY FIRSTNAME */
+//			updateStudent(studentDAO); 					/* UPDATE A STUDENT */
+//			deleteStudent(studentDAO); 					/* DELETE A STUDENT */
+			deleteAllStudents(studentDAO);				/* DELETE ALL STUDENTS */
 		};
 	}
-
 
 	/* CREATE A STUDENT */
 	private void createStudent(StudentDAO studentDAO) {
@@ -101,7 +95,7 @@ public class CrudDemoApplication {
 		}
 	}
 
-	/* Update A STUDENT */
+	/* UPDATE A STUDENT */
 	private void updateStudent(StudentDAO studentDAO) {
 //		retrieve student base on the id: primary key
 		int studentId = 1;
@@ -131,7 +125,7 @@ public class CrudDemoApplication {
 		}
 		System.out.println("----");
 //		Deleting
-		int studentId = 5; // assign student id that will be deleted
+		int studentId = 7; // assign student id that will be deleted
 		System.out.println("Deleting student with id : " + studentId);
 		studentDAO.delete(studentId);
 //		Call print all students again to compare the students in the list
@@ -139,5 +133,11 @@ public class CrudDemoApplication {
 		for (Student tempStudent : theStudentsAfterDelete) {
 			System.out.println(tempStudent);
 		}
+	}
+
+	/* DELETE ALL STUDENTS */
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		studentDAO.deleteAll();
+		System.out.println("Deleted all students");
 	}
 }

@@ -5,7 +5,6 @@ import com.springDemo.crudDemo.entity.Student;
 import java.util.List;
 
 /*DAO stands for Data Access Object*/
-
 public interface StudentDAO {
 
     void save(Student theStudent);
@@ -19,4 +18,6 @@ public interface StudentDAO {
     void update(Student theStudent);
 
     void delete(Integer id);
+
+    void deleteAll();
 }
